@@ -1,0 +1,35 @@
+package com.foodstore.bbs.dao;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.foodstore.bbs.domain.Cart;
+
+@Repository
+public class CartDaoImpl implements CartDao {
+
+	private SqlSessionTemplate sqlSession;
+	
+	private final String NAME_SPACE = "com.foodstore.mappers.CartMapper";
+	
+	@Autowired
+	public void setSqlSession(SqlSessionTemplate sqlSession) {
+		this.sqlSession = sqlSession;
+	}
+
+	@Override
+	public List<Cart> cartList(String userId) {
+		return sqlSession.selectList(NAME_SPACE + ".getCartList", userId);
+	}
+
+	@Override
+	public void addCart(Cart cart) {
+		sqlSession.insert(NAME_SPACE + ".addCart", cart);
+	}
+	
+	
+
+}

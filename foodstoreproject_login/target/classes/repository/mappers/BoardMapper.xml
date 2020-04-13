@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.foodstore.bbs.mapper.BoardMapper">
+
+	<!-- 게시글 리스트 불러오는 맵퍼 -->
+	<select id="boardList" parameterType="hashmap"
+		resultType="Board" resultMap="boardResultMap">
+		SELECT *
+		FROM springbbs
+		<where>
+			<if test="type == 'title'">
+				title LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'writer'">
+				writer LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'content'">
+				content LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</where>
+		ORDER BY no DESC
+		LIMIT #{startRow}, #{num}
+	</select>
+
+	<!-- 게시글 전체 수 계산하는 맵핑(검색 포함) -->
+	<select id="getBoardCount" parameterType="hashmap"
+		resultType="int">
+		SELECT
+		COUNT(no)
+		FROM springbbs
+		<where>
+			<if test="type == 'title'">
+				title LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'writer'">
+				writer LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'content'">
+				content LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</where>
+	</select>
+
+	<!-- 게시글 상세보기 맵핑 -->
+	<select id="getBoard" resultType="Board"
+		resultMap="boardResultMap">
+		SELECT *
+		FROM springbbs
+		WHERE no=#{no}
+	</select>
+
+	<!-- 게시물 상세보기 시 다중 첨부파일 맵핑 -->
+	<select id="getFiles" resultType="FileName"
+		resultMap="fileNameResultMap">
+		SELECT *
+		FROM files
+		WHERE bbs_no=#{no}
+	</select>
+
+	<!-- 조회수 증가 맵핑 -->
+	<update id="incrementReadCount">
+		UPDATE springbbs
+		SET read_count = read_count+1
+		WHERE no
+		= #{no}
+	</update>
+
+	<!-- 게시글 쓰기 맵핑 -->
+	<insert id="insertBoard" parameterType="Board"
+		useGeneratedKeys="true" keyProperty="no">
+		INSERT INTO springbbs(title,
+		writer, content, reg_date, read_count, pass, file1)
+		VALUES(#{title},
+		#{writer}, #{content}, SYSDATE(), #{readCount}, #{pass}, #{file1})
+	</insert>
+
+	<!-- 비밀번호 체크하는 맵핑 -->
+	<select id="isPassCheck" resultType="String">
+		SELECT pass
+		FROM springbbs
+		WHERE no=#{no}
+	</select>
+
+	<!-- 수정요청 처리 맵핑 -->
+	<update id="updateBoard" parameterType="Board">
+		UPDATE springbbs
+		SET title
+		= #{title}, content = #{content},
+		reg_date = SYSDATE()
+		WHERE no = #{no}
+	</update>
+
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard">
+		DELETE FROM springbbs
+		WHERE no = #{no}
+	</delete>
+
+	<!-- 다중 게시물 첨부파일 삭제 -->
+	<delete id="deleteFiles">
+		DELETE FROM files
+		WHERE bbs_no = #{no}
+	</delete>
+
+	<!-- 업로드된 다중 파일정보를 테이블에 추가하는 맵핑 구문 -->
+	<insert id="insertFileNames" parameterType="FileName"
+		useGeneratedKeys="true" keyProperty="no">
+		INSERT INTO files(file2, bbs_no)
+		VALUES
+		<foreach item="fileName" collection="list" separator=",">
+			(#{fileName.file2}, #{fileName.bbsNo})
+		</foreach>
+	</insert>
+
+	<!-- 개시글 번호에 해당하는 댓글 리스트를 가져오는 맵핑 -->
+	<select id="replyList" resultType="Reply"
+		resultMap="replyResultMap">
+		SELECT *
+		FROM reply
+		WHERE bbs_no = #{no}
+		ORDER BY no DESC
+	</select>
+
+	<!-- 좋아요를 업데이트 하는 맵핑 -->
+	<update id="updateThank">
+		UPDATE springbbs
+		SET thank = thank+1
+		WHERE no = #{no}
+	</update>
+
+	<!-- 좋아요 정보를 가져오는 맵핑 -->
+	<select id="getThank" resultType="int">
+		SELECT thank
+		FROM springbbs
+		WHERE no = #{no}
+	</select>
+
+	<!-- 댓글을 추가하는 맵핑 -->
+	<insert id="addReply" parameterType="Reply">
+		INSERT INTO reply(bbs_no, reply_content, reply_writer, reg_date)
+		VALUES(#{bbsNo}, #{replyContent}, #{replyWriter}, SYSDATE())
+	</insert>
+
+	<!-- 댓글 수정 맵핑 -->
+	<update id="updateReply" parameterType="Reply">
+		UPDATE reply
+		SET
+		reply_content = #{replyContent},
+		reg_date = SYSDATE()
+		WHERE no = #{no}
+	</update>
+
+	<!--댓글을 삭제하는 맵핑 구문 -->
+	<delete id="deleteReply">
+		DELETE FROM reply
+		WHERE no = #{no}
+	</delete>
+
+	<!-- Board 클래스의 프로퍼티와 테이블의 컬럼을 맵핑하는 ResultMap -->
+	<resultMap id="boardResultMap" type="Board">
+		<id property="no" column="no" />
+		<result property="title" column="title" />
+		<result property="writer" column="writer" />
+		<result property="content" column="content" />
+		<result property="regDate" column="reg_date" />
+		<result property="readCount" column="read_count" />
+		<result property="pass" column="pass" />
+		<result property="file1" column="file1" />
+		<result property="thank" column="thank" />
+	</resultMap>
+
+	<!-- FileName클래스의 프로퍼티와 files테이블의 컬럼을 맵핑하는 ResultMap -->
+	<resultMap id="fileNameResultMap" type="FileName">
+		<id property="no" column="no" />
+		<result property="file2" column="file2" />
+		<result property="bbsNo" column="bbs_no" />
+	</resultMap>
+
+	<!-- Reply클래스와 테이블의 컬럼을 맵핑하는 리절트 맵 -->
+	<resultMap id="replyResultMap" type="Reply">
+		<id property="no" column="no" />
+		<result property="bbsNo" column="bbs_no" />
+		<result property="replyContent" column="reply_content" />
+		<result property="replyWriter" column="reply_writer" />
+		<result property="regDate" column="reg_date" />
+	</resultMap>
+
+</mapper>

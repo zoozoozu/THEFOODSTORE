@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+</settings> -->
+<mapper namespace="com.foodstore.bbs.mapper.ProductMapper">
+	<!-- 상품리스트 -->
+	
+	<select id="productList" resultType="Product" resultMap="ProductResultMap">
+		SELECT
+			* 
+		FROM progoods 
+		WHERE gcode = #{gcode};
+	</select>
+	
+	<select id="getProduct" resultType="Product" resultMap="ProductResultMap">
+		SELECT
+			*
+		FROM progoods
+		WHERE gno = #{product.no} AND gcode = #{product.code};
+	</select>
+	
+	<select id="getReplyList" resultType="ProductReply" resultMap="ReplyResultMap">
+		SELECT 
+			* 
+		FROM product_reply 
+		WHERE gcode = #{productReply.gcode} AND gno = #{productReply.productNo}
+		ORDER BY no DESC;
+	</select>
+	
+	<!-- 상품평 추가 -->
+	<insert id="addProductReply" parameterType="ProductReply">
+		INSERT INTO product_reply(no, writer, reply, gno, gcode)
+		VALUES(#{no}, #{writer}, #{reply}, #{productNo}, #{gcode})
+	</insert>
+	<!-- 상품평 수정 -->
+	<update id="updateProductReply" parameterType="ProductReply">
+		UPDATE product_reply
+		SET
+		reply = #{reply}
+		WHERE no = #{no}
+	</update>
+	
+<resultMap id="ProductResultMap" type="Product">
+		<id property="no" column="gno" />
+		<result property="code" column="gcode" />
+		<result property="name" column="gname" />
+		<result property="intro" column="intro" />
+		<result property="sell" column="sell" />
+		<result property="price" column="price" />
+		<result property="stock" column="stock" />
+		<result property="filePath" column="file_path" />
+</resultMap>
+
+<resultMap id="ReplyResultMap" type="ProductReply">
+		<id property="no" column="no" />
+		<result property="writer" column="writer" />
+		<result property="reply" column="reply" />
+		<result property="productNo" column="gno" />
+		<result property="gcode" column="gcode" />
+</resultMap>
+</mapper>

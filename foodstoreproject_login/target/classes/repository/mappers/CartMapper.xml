@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.foodstore.mappers.CartMapper">
+	
+	<!-- 일단은 해당 아이디의 전체 카트리스트 받아오기 -->
+	<select id="getCartList" resultType="Cart">
+		SELECT no as cartId, user_id as userId, product_id as productId, amount
+		FROM cart
+		WHERE user_id = #{userId}
+	</select>
+	
+	<insert id="addCart" parameterType="Cart">
+		INSERT INTO cart(user_id, product_id, amount)
+		VALUES(#{userId}, #{productId}, #{amount})
+	</insert>
+	
+</mapper>
