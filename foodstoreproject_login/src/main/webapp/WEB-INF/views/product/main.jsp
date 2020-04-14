@@ -1,62 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<article>
-<div class="w3-content w3-display-container" style="max-width:800px">
-  <img class="mySlides w3-animate-left" src="resources/images/img_nature_wide.jpg" style="width:100%">
-  <img class="mySlides w3-animate-left" src="resources/images/img_snow_wide.jpg" style="width:100%">
-  <img class="mySlides w3-animate-left" src="resources/images/img_mountains_wide.jpg" style="width:100%">
-
-<!--버튼-->
-  <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
-    <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-    <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
-  </div>
-</div>
-</article>
-
-<script>
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function currentDiv(n) {
-  showDivs(slideIndex = n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demo");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" w3-white", "");
-  }
-  x[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " w3-white";
-}
-</script>
-
-<script>
-var myIndex = 0;
-carousel();
-
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  myIndex++;
-  if (myIndex > x.length) {myIndex = 1}    
-  x[myIndex-1].style.display = "block";  
-  setTimeout(carousel, 3000);    
-}    
-</script>
+<body>
+	<div id="slides-shop" class="cover-slides">
+		<ul class="slides-container">
+			<li class="text-center"><img
+				src="resources/images/banner-01.jpg" alt="">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="m-b-20">
+								<strong>Welcome To <br> Freshshop
+								</strong>
+							</h1>
+							<p class="m-b-40">
+								See how your users experience your website in realtime or view <br>
+								trends to see any changes in performance over time.
+							</p>
+							<p>
+								<a class="btn hvr-hover" href="#">Shop New</a>
+							</p>
+						</div>
+					</div>
+				</div></li>
+			<li class="text-center"><img
+				src="resources/images/banner-02.jpg" alt="">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="m-b-20">
+								<strong>Welcome To <br> Freshshop
+								</strong>
+							</h1>
+							<p class="m-b-40">
+								See how your users experience your website in realtime or view <br>
+								trends to see any changes in performance over time.
+							</p>
+							<p>
+								<a class="btn hvr-hover" href="#">Shop New</a>
+							</p>
+						</div>
+					</div>
+				</div></li>
+			<li class="text-center"><img
+				src="resources/images/banner-03.jpg" alt="">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="m-b-20">
+								<strong>Welcome To <br> Freshshop
+								</strong>
+							</h1>
+							<p class="m-b-40">
+								See how your users experience your website in realtime or view <br>
+								trends to see any changes in performance over time.
+							</p>
+							<p>
+								<a class="btn hvr-hover" href="#">Shop New</a>
+							</p>
+						</div>
+					</div>
+				</div></li>
+		</ul>
+		<div class="slides-navigation">
+			<a href="#" class="next"><i class="fa fa-angle-right"
+				aria-hidden="true"></i></a> <a href="#" class="prev"><i
+				class="fa fa-angle-left" aria-hidden="true"></i></a>
+		</div>
+	</div>
+</body>
