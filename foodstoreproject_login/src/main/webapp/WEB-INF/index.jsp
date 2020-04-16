@@ -33,38 +33,39 @@
 <link type="text/css" href="resources/css/board.css" rel="stylesheet" />
 <link type="text/css" href="resources/css/reply.css" rel="stylesheet" />
 <script src="resources/js/bootstrap.min.js"></script> -->
-<!-- ALL JS FILES -->
-<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="resources/js/popper.min.js"></script>
-<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-<!-- ALL PLUGINS -->
-<script type="text/javascript" src="resources/js/jquery.superslides.min.js"></script>
-<script type="text/javascript" src="resources/js/bootstrap-select.js"></script>
-<script type="text/javascript" src="resources/js/inewsticker.js"></script>
-<script type="text/javascript" src="resources/js/bootsnav.js"></script>
-<script type="text/javascript" src="resources/js/images-loded.min.js"></script>
-<script type="text/javascript" src="resources/js/isotope.min.js"></script>
-<script type="text/javascript" src="resources/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="resources/js/baguetteBox.min.js"></script>
-<script type="text/javascript" src="resources/js/form-validator.min.js"></script>
-<script type="text/javascript" src="resources/js/contact-form-script.js"></script>
-<script type="text/javascript" src="resources/js/custom.js"></script>
 
-<script type="text/javascript" src="resources/js/formcheck.js"></script>
-<script type="text/javascript" src="resources/js/member.js"></script>
-<script type="text/javascript" src="resources/js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
-	<div id="wrap">
-		<%@ include file="pages/header.jsp"%>
-		<!-- <div class="clear"></div> -->
-		<c:if test="${ not empty param.body }">
-			<jsp:include page="${ param.body }" />
-		</c:if>
-		<div class="clear"></div>
-		<%@ include file="pages/footer.jsp"%>
-	</div>
+	<%@ include file="pages/header.jsp"%>
+	<!-- <div class="clear"></div> -->
+	<c:if test="${ not empty param.body }">
+		<jsp:include page="${ param.body }" />
+	</c:if>
+	<div class="clear"></div>
+	<%@ include file="pages/footer.jsp"%>
+
+	<!-- ALL JS FILES -->
+	<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="resources/js/popper.min.js"></script>
+	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+	
+	<!-- ALL PLUGINS -->
+	<script type="text/javascript" src="resources/js/jquery.superslides.min.js"></script>
+	<script type="text/javascript" src="resources/js/bootstrap-select.js"></script>
+	<script type="text/javascript" src="resources/js/inewsticker.js"></script>
+	<script type="text/javascript" src="resources/js/bootsnav.js"></script>
+	<script type="text/javascript" src="resources/js/images-loded.min.js"></script>
+	<script type="text/javascript" src="resources/js/isotope.min.js"></script>
+	<script type="text/javascript" src="resources/js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="resources/js/baguetteBox.min.js"></script>
+	<script type="text/javascript" src="resources/js/form-validator.min.js"></script>
+	<script type="text/javascript" src="resources/js/contact-form-script.js"></script>
+	<script type="text/javascript" src="resources/js/custom.js"></script>
+
+	<script type="text/javascript" src="resources/js/formcheck.js"></script>
+	<script type="text/javascript" src="resources/js/member.js"></script>
+	<script type="text/javascript" src="resources/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </body>
 </html>
