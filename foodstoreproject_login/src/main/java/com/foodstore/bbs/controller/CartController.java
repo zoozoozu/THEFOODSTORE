@@ -14,17 +14,25 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.foodstore.bbs.domain.Cart;
 import com.foodstore.bbs.domain.Member;
+import com.foodstore.bbs.domain.Product;
 import com.foodstore.bbs.service.CartService;
+import com.foodstore.bbs.service.ProductService;
 
 @Controller
 @SessionAttributes({ "cart" })
 public class CartController {
 
 	private CartService cartService;
+	private ProductService productService;
 
 	@Autowired
 	public void setCartService(CartService cartService) {
 		this.cartService = cartService;
+	}
+	
+	@Autowired
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
 	}
 
 	@RequestMapping({"order/cartAdd", "/cartAdd" })
@@ -49,7 +57,7 @@ public class CartController {
 	public String cartList(Model model,
 			HttpSession session,
 			@RequestParam(value = "userId") String userId,
-			@RequestParam(value = "productNo") int productNo, 
+			@RequestParam(value = "productNo") int productNo,
 			@RequestParam(value = "amount") int amount) {
 		/*
 		 * // List<Cart> cartList = cartService.cartList(userId); //
@@ -60,12 +68,14 @@ public class CartController {
 		cart.setProductId(productNo);
 		cart.setAmount(amount);
 		
+		Product product = productService.getProduct(productNo);
+			
 		//DB에 저장할 필요가 없으므로
 		//cartService.addCart(cart);
 		String id = (String)session.getAttribute("id");
 		model.addAttribute("sessionTest", id);
 		model.addAttribute("userId", userId);
-		model.addAttribute("productNo", productNo);
+		model.addAttribute("product", product);
 		model.addAttribute("amount", amount);
 		return "cart/goOrder";
 	}

@@ -66,9 +66,13 @@
 							<!-- 다음 페이지로 값을 전달하기 위해서 만든 폼 -->
 
 							<input type="hidden" name="userId"
-								value="${ sessionScope.member.id }" /> <input type="hidden"
-								name="productNo" value="${product.no }">
-
+								value="${ sessionScope.member.id }" /> 
+							<input type="hidden" name="productNo" 
+								value="${product.no }"/>
+							<%-- <input type="hidden" name="productFile"
+								value="${product.filePath }"/> --%>
+							<input type="hidden" name="product"
+								value="${product }"/>
 							<div class="price-box-bar">
 								<div class="cart-and-bay-btn">
 									<button class="btn hvr-hover" onclick="action='goOrder'"

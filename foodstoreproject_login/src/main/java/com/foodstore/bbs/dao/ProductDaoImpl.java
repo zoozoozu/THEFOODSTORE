@@ -38,6 +38,11 @@ public class ProductDaoImpl implements ProductDao {
 		params.put("product", product);
 		return sqlSession.selectOne(NAME_SPACE + ".getProduct", params);
 	}
+	
+	@Override
+	public Product getProduct(int no) {
+		return sqlSession.selectOne(NAME_SPACE + ".getProductNo", no);
+	}
 
 	@Override
 	public List<ProductReply> getReplyList(String code, int productNo) {
@@ -48,7 +53,7 @@ public class ProductDaoImpl implements ProductDao {
 		params.put("productReply", productReply);
 		return sqlSession.selectList(NAME_SPACE + ".getReplyList", params);
 	}
-
+	
 	@Override
 	public void addProductReply(ProductReply productReply) {
 		sqlSession.insert(NAME_SPACE + ".addProductReply", productReply);
@@ -60,5 +65,4 @@ public class ProductDaoImpl implements ProductDao {
 		sqlSession.update(NAME_SPACE + ".updateProductReply", productReply);
 		
 	}
-
 }
