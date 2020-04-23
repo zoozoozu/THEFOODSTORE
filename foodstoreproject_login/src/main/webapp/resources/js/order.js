@@ -7,3 +7,11 @@ function goOrder(userId, productNo, amount){
 	form.method = "post";
 	form.submit();
 }
+
+$(document).ready(function(){
+	$("select#option").change(function(){
+		if($("#option").val() == "6"){
+			$("#displaydiv").slideDown();	
+	}
+})
+})

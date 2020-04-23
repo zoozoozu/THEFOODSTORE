@@ -7,4 +7,5 @@ import com.foodstore.bbs.domain.Cart;
 public interface CartService {
 	public List<Cart> cartList(String userId);
 	public void addCart(Cart cart);
+	
 }
