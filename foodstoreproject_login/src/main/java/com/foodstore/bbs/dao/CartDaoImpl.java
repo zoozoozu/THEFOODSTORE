@@ -29,7 +29,29 @@ public class CartDaoImpl implements CartDao {
 	public void addCart(Cart cart) {
 		sqlSession.insert(NAME_SPACE + ".addCart", cart);
 	}
-	
-	
 
+	@Override
+	public void delete(int cartId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteAll(String userId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int sumMoney(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int countCart(String userId, int productId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 }

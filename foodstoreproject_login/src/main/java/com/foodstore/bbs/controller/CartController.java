@@ -2,12 +2,14 @@ package com.foodstore.bbs.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -80,8 +82,14 @@ public class CartController {
 		return "cart/goOrder";
 	}
 	
-	@RequestMapping({"payments/complete","test"})
-	public String test(Model model) {
+	@RequestMapping(value = {"test","payments/complete"}, method=RequestMethod.POST)
+	public String test(Model model,HttpServletRequest httpServletRequest) {
+		//Product product = productService.getProduct(productNo);
+		
+		int productNo = Integer.parseInt(httpServletRequest.getParameter("productNo"));
+		
+		Product product = productService.getProduct(productNo);
+		model.addAttribute("product", product);
 		return "cart/test";
 	}
 }

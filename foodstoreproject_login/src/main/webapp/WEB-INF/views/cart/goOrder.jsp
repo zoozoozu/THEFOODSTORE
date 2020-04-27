@@ -134,6 +134,7 @@
 										class="custom-control-label" for="credit">Credit card</label>
 								</div>
 							</div>
+							<input type="hidden" name="productNo" value="${product.no }" />
 						</form>
 					</div>
 				</div>
@@ -179,21 +180,20 @@
 						<div class="rounded p-2 bg-light">
 							<div class="media mb-2 border-bottom">
 								<div class="media-body">
-								<div class="row">
-									<div class="col-md-2 mb-3">
-									<a href="#"><img class="d-block" src="${product.filePath }"
-										width=80, height=80></a>
+									<div class="row">
+										<div class="col-md-2 mb-3">
+											<a href="#"><img class="d-block"
+												src="${product.filePath }" width=80, height=80></a>
+										</div>
+										<div class="col-md-4 mb-3">
+											<div class="ml-auto font-weight-bold">${product.name }</div>
+										</div>
+										<div class="col-md-4 mb-3">
+											<div class="small text-muted">
+												가격: ${product.price }<span class="mx-2">|</span>수량: ${amount }
+												<span class="mx-2">|</span>합계 : 
+										</div>
 									</div>
-									<div class="col-md-4 mb-3">
-									<div class="ml-auto font-weight-bold">${product.name }</div>
-									</div>
-									<div class="col-md-4 mb-3">
-									<div class="small text-muted">가격: ${product.price }<span
-											class="mx-2">|</span>수량: ${amount }
-											<span class="mx-2">|</span>Subtotal: $80.00
-									</div>
-									</div>
-								</div>
 								</div>
 							</div>
 						</div>
@@ -230,8 +230,7 @@
 
 
 			<div class="col-10 d-flex shopping-box">
-				<a href="checkout.html" class="ml-auto btn hvr-hover">Place
-					Order</a>
+				<a href="test" class="ml-auto btn hvr-hover">Place Order</a>
 			</div>
 		</div>
 

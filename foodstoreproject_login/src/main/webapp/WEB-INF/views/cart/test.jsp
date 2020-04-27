@@ -5,7 +5,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript" src="resources/js/order.js"></script>
-<article>
+<body>
   <script>
     $(function(){
         var IMP = window.IMP; // 생략가능
@@ -16,7 +16,7 @@
             pg : 'kakaopay',
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
-            name : 'KH Books 도서 결제',
+            name : "${product.no}",
             amount : 64900,
             buyer_email :  "gildong@gmail.com",
             buyer_name : "홍길동",
@@ -59,8 +59,7 @@
                 location.href="/order/payFail";
                 alert(msg);
             }
-        });
-        
+        });    
     });
     </script>
-</article>
+</body>
