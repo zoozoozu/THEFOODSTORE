@@ -101,3 +101,20 @@ commit;
 
 select * from product_reply;
 select * from product_reply where gcode = 'c1000' and gno=1;
+
+
+use spring;
+DROP TABLE cart;
+CREATE TABLE cart(
+    no INTEGER AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(16) NOT NULL,
+    product_id INTEGER(10) NOT NULL,
+    amount INTEGER(6) NOT NULL,
+    total_price INTEGER(10),
+    CONSTRAINT fk_cart_user_id FOREIGN KEY(user_id) REFERENCES member(id),
+    CONSTRAINT fk_cart_product_id FOREIGN KEY(product_id) REFERENCES progoods(gno)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into cart(user_id, product_id, amount) values('admin', 5, 1);
+commit;
+select * from cart;
