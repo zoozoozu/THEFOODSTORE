@@ -6,6 +6,7 @@ public class Cart {
 	private int productId;
 	private int productPrice;
 	private int amount;
+	private int totalPrice;
 	
 	public Cart() {}
 	public Cart(int cartId, String userId, int productId, int productPrice, int amount) {
@@ -14,6 +15,7 @@ public class Cart {
 		this.productId = productId;
 		this.productPrice = productPrice;
 		this.amount = amount;
+		this.totalPrice = productPrice * amount;
 	}
 	public int getCartId() {
 		return cartId;
@@ -45,5 +47,10 @@ public class Cart {
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
-	
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 }

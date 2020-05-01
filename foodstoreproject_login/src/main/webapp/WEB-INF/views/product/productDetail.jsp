@@ -57,18 +57,18 @@
 							<ul>
 								<li>
 									<div class="form-group quantity-box">
-										<label class="control-label">Quantity</label> <input
-											name="amount" class="form-control" value="0" min="0" max="20"
+										<label class="control-label">수량</label> <input
+											name="amount" id="amount"class="form-control" value="1" min="1" max="20"
 											type="number">
 									</div>
 								</li>
 							</ul>
 							<!-- 다음 페이지로 값을 전달하기 위해서 만든 폼 -->
 							<div id="total">
-							<h2>
+							<h2 class = "totalPrice">
 								합계 : ￦
-								<%-- <fmt:formatNumber pattern="###,###,###"
-									value="${product.price }" /> --%>
+								<fmt:formatNumber pattern="###,###,###"
+									value="${product.price }" />
 							</h2>
 							</div>
 							
@@ -77,7 +77,7 @@
 							<input type="hidden"
 								name="productNo" value="${product.no }" />
 							<input type="hidden"
-								name="productPrice" value="${product.price }"/>
+								name="productPrice" id="productPrice" value="${product.price }"/>
 							<hr>
 							<div class="price-box-bar">
 								<div class="cart-and-bay-btn">

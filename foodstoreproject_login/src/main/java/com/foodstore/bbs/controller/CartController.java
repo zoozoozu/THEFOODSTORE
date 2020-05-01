@@ -69,7 +69,8 @@ public class CartController {
 		cart.setUserId(userId);
 		cart.setProductId(productNo);
 		cart.setAmount(amount);
-		
+		cartService.addCart(cart);
+
 		Product product = productService.getProduct(productNo);
 			
 		//DB에 저장할 필요가 없으므로
