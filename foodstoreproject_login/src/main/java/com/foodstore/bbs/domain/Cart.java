@@ -4,19 +4,18 @@ public class Cart {
 	private int cartId;
 	private String userId;
 	private int productId;
+	private String productName;
+	private String productFilePath;
 	private int productPrice;
 	private int amount;
 	private int totalPrice;
 	
 	public Cart() {}
-	public Cart(int cartId, String userId, int productId, int productPrice, int amount) {
-		this.cartId = cartId;
-		this.userId = userId;
-		this.productId = productId;
-		this.productPrice = productPrice;
-		this.amount = amount;
-		this.totalPrice = productPrice * amount;
-	}
+
+	/*
+	 * public Cart(int cartId, String userId, int productId, int productPrice, int
+	 * amount) { this.cartId = cartId; this.userId = userId; this.amount = amount; }
+	 */
 	public int getCartId() {
 		return cartId;
 	}
@@ -52,5 +51,17 @@ public class Cart {
 	}
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public String getProductFilePath() {
+		return productFilePath;
+	}
+	public void setProductFilePath(String productFilePath) {
+		this.productFilePath = productFilePath;
 	}
 }

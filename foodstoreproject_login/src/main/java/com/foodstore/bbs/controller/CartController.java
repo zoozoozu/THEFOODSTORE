@@ -64,22 +64,27 @@ public class CartController {
 		/*
 		 * // List<Cart> cartList = cartService.cartList(userId); //
 		 * model.addAttribute("cartList", cartList);
-		 */		
+		 */	
+		// 바로 결제이므로 클릭시 먼저 카트에 상품의 아이디와 수량 그리고 상품의 넘버를 넣는다.
+		Product product = productService.getProduct(productNo);
+		int totalPrice = product.getPrice() * amount;
 		Cart cart = new Cart();
 		cart.setUserId(userId);
 		cart.setProductId(productNo);
 		cart.setAmount(amount);
+		/*
+		 * cart.setProductPrice(product.getPrice()); cart.setTotalPrice(totalPrice);
+		 */
 		cartService.addCart(cart);
+		
+		List<Cart> cartList = cartService.cartList(userId);
 
-		Product product = productService.getProduct(productNo);
-			
+	
 		//DB에 저장할 필요가 없으므로
 		//cartService.addCart(cart);
-		String id = (String)session.getAttribute("id");
-		model.addAttribute("sessionTest", id);
 		model.addAttribute("userId", userId);
 		model.addAttribute("product", product);
-		model.addAttribute("amount", amount);
+		model.addAttribute("cartList", cartList);
 		return "cart/goOrder";
 	}
 	

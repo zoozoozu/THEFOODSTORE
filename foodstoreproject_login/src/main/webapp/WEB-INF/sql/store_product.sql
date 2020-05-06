@@ -102,7 +102,6 @@ commit;
 select * from product_reply;
 select * from product_reply where gcode = 'c1000' and gno=1;
 
-
 use spring;
 DROP TABLE cart;
 CREATE TABLE cart(
@@ -117,3 +116,9 @@ CREATE TABLE cart(
 insert into cart(user_id, product_id, amount) values('admin', 5, 1);
 commit;
 select * from cart;
+
+SELECT c.no as cartId, m.id as userId, p.gno as productId, p.gname as productName, c.amount, price*amount as totalPrice
+FROM member m, progoods p, cart c
+WHERE m.id = c.user_id and p.gno = c.product_id;
+
+DROP table cart;

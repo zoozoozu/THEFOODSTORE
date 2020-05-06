@@ -5,9 +5,9 @@
 	
 	<!-- 일단은 해당 아이디의 전체 카트리스트 받아오기 -->
 	<select id="getCartList" resultType="Cart">
-		SELECT no as cartId, user_id as userId, product_id as productId, amount, price*amount as totalPrice
+		SELECT no as cartId, user_id as userId, product_id as productId, price as productPrice, file_path as productFilePath, gname as productName, amount, price*amount as totalPrice
 		FROM member m, progoods p, cart c
-		WHERE m.id = c.user_id and p.gname = c.product_id;
+		WHERE m.id = c.user_id and p.gno = c.product_id;
 	</select>
 	
 	<insert id="addCart" parameterType="Cart">

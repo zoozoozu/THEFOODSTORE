@@ -41,7 +41,7 @@
 					</button>
 					<a class="navbar-brand"
 						href="${ pageContext.servletContext.contextPath }/"><img
-						src="resources/images/brand.png" class="logo" alt="" height="70px"></a>
+						src="resources/images/thefood.png" class="logo" alt="" height="70px"></a>
 				</div>
 				<!-- End Header Navigation -->
 
