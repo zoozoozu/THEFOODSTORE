@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script type="text/javascript" src="resources/js/order.js"></script>
 <body>
   <script>
     $(function(){
@@ -13,16 +12,16 @@
         var msg;
         
         IMP.request_pay({
-            pg : 'kakaopay',
+            pg : "inicis",
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
-            name : "${product.no}",
-            amount : 64900,
+            name : "test",
+            amount : '${total}',
             buyer_email :  "gildong@gmail.com",
-            buyer_name : "홍길동",
-            buyer_tel : "010-4242-4242",
-            buyer_addr : "서울특별시 강남구 신사동",
-            buyer_postcode : '123-456',
+            buyer_name : '${sessionScope.member.name }',
+            buyer_tel : "${sessionScope.member.mobile}",
+            buyer_addr : "${sessionScope.member.address1}",
+            buyer_postcode : '${sessionScope.member.zipcode}',
             //m_redirect_url : 'http://www.naver.com'
         }, function(rsp) {
             if ( rsp.success ) {

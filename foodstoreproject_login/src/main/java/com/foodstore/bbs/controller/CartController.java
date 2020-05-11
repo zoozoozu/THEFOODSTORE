@@ -78,7 +78,6 @@ public class CartController {
 		cartService.addCart(cart);
 		
 		List<Cart> cartList = cartService.cartList(userId);
-
 	
 		//DB에 저장할 필요가 없으므로
 		//cartService.addCart(cart);
@@ -88,14 +87,13 @@ public class CartController {
 		return "cart/goOrder";
 	}
 	
-	@RequestMapping(value = {"test","payments/complete"}, method=RequestMethod.POST)
-	public String test(Model model,HttpServletRequest httpServletRequest) {
-		//Product product = productService.getProduct(productNo);
+	@RequestMapping(value = {"test","payments/complete"})
+	public String finalPay(Model model,HttpServletRequest httpServletRequest, HttpSession session) {
+		String userId = (String)session.getAttribute("userId");
+		int cartTotalPrice = cartService.sumMoney(userId);
 		
-		int productNo = Integer.parseInt(httpServletRequest.getParameter("productNo"));
+		model.addAttribute("total", cartTotalPrice);
 		
-		Product product = productService.getProduct(productNo);
-		model.addAttribute("product", product);
 		return "cart/test";
 	}
 }

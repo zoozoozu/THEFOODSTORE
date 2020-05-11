@@ -15,4 +15,10 @@
 		VALUES(#{userId}, #{productId}, #{amount})
 	</insert>
 	
+	<select id="sumMoney" resultType="int">
+		SELECT sum(price*amount)
+		FROM member m, progoods p, cart c
+		WHERE m.id = c.user_id and p.gno = c.product_id; 
+	</select>
+	
 </mapper>

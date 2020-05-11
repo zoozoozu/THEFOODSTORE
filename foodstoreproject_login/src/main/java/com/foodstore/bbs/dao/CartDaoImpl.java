@@ -44,8 +44,7 @@ public class CartDaoImpl implements CartDao {
 
 	@Override
 	public int sumMoney(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(NAME_SPACE + ".sumMoney", userId);
 	}
 
 	@Override

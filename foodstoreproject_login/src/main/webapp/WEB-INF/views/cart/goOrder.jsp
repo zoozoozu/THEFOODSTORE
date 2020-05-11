@@ -80,7 +80,8 @@
 								</div>
 								<div class="col-md-4 mb-3">
 									<label for="zip">Zip *</label> <input type="text"
-										class="form-control" id="zip" placeholder="${sessionScope.member.zipcode }" required>
+										class="form-control" id="zip"
+										placeholder="${sessionScope.member.zipcode }" required>
 									<div class="invalid-feedback">Zip code required.</div>
 
 								</div>
@@ -177,54 +178,50 @@
 							<h3>Shopping cart</h3>
 						</div>
 						<c:forEach var="c" items="${cartList }" varStatus="status">
-						<div class="rounded p-2 bg-light">
-							<div class="media mb-2 border-bottom">
-								<div class="media-body">
-									<div class="row">
-										<div class="col-md-2 mb-3">
-											<a href="#"><img class="d-block"
-												src="${c.productFilePath }" width=80, height=80></a>
-										</div>
-										<div class="col-md-4 mb-3">
-											<div class="ml-auto font-weight-bold">${c.productName }</div>
-										</div>
-										<div class="col-md-4 mb-3">
-											<div class="small text-muted">
-												가격: ${c.productPrice }<span class="mx-2">|</span>수량: ${c.amount }
-												<span class="mx-2">|</span>합계 : ${c.totalPrice }
+							<div class="rounded p-2 bg-light">
+								<div class="media mb-2 border-bottom">
+									<div class="media-body">
+										<div class="row">
+											<div class="col-md-2 mb-3">
+												<a href="#"><img class="d-block"
+													src="${c.productFilePath }" width=80, height=80></a>
+											</div>
+											<div class="col-md-4 mb-3">
+												<div class="ml-auto font-weight-bold">${c.productName }</div>
+											</div>
+											<div class="col-md-4 mb-3">
+												<div class="small text-muted">
+													가격: ${c.productPrice }<span class="mx-2">|</span>수량:
+													${c.amount } <span class="mx-2">|</span>합계 : ${c.totalPrice }
+													<c:set var="cartTotlPrice"
+														value="${cartTotlPrice + c.totalPrice }" />
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</c:forEach>
 					</div>
-					</c:forEach>
 				</div>
-
 				<hr class="mb-4">
 				<div class="col-md-10 col-lg-10">
 					<div class="title-left">
 						<h3>Your order</h3>
 					</div>
-					<div class="d-block my-3">
-						<div class="font-weight-bold">Product</div>
-						<div class="ml-auto font-weight-bold">Total</div>
+					<div class="d-flex gr-total">
+						<h5>Grand Total</h5>
+						<div class="ml-auto h5">
+							<c:out value="${cartTotlPrice}" />
+						</div>
 					</div>
 					<hr class="my-1">
-					<div class="d-flex">
-						<h4>Sub Total</h4>
-						<div class="ml-auto font-weight-bold">$ 440</div>
-					</div>
 					<!-- 배송비 포함시 참고 할 것! -->
 					<!-- <div class="d-flex">
 								<h4>Shipping Cost</h4>
 								<div class="ml-auto font-weight-bold">Free</div>
 							</div> -->
 					<hr>
-					<div class="d-flex gr-total">
-						<h5>Grand Total</h5>
-						<div class="ml-auto h5">$ 388</div>
-					</div>
 					<hr>
 				</div>
 			</div>
