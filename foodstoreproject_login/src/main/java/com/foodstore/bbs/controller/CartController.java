@@ -81,6 +81,8 @@ public class CartController {
 	
 		//DB에 저장할 필요가 없으므로
 		//cartService.addCart(cart);
+		session.setAttribute("cartList", cartList);
+		
 		model.addAttribute("userId", userId);
 		model.addAttribute("product", product);
 		model.addAttribute("cartList", cartList);
