@@ -98,7 +98,7 @@
 			<div class="row my-5">
 				<div class="card card-outline-secondary my-4">
 					<div class="card-header">
-						<h2>Product Reviews</h2>
+						<h2>상품댓글</h2>
 					</div>
 					<div class="card-body">
 						<!-- 여기서부터 댓글 반복 -->
@@ -111,6 +111,7 @@
 								</div>
 								<div class="media-body">
 									<p>댓글이 존재하지 않습니다.</p>
+									<small class="text-muted"></small>
 									<!-- <small class="text-muted">날짜부분 구현하기</small> -->
 								</div>
 							</div>

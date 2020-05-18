@@ -98,4 +98,9 @@ public class CartController {
 		
 		return "cart/test";
 	}
+	
+	@RequestMapping(value= {"cart"})
+	public String cartList() {
+		return "cart/cart";
+	}
 }
