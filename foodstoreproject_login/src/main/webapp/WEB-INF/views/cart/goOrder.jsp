@@ -192,8 +192,8 @@
 												<div class="small text-muted">
 													가격: ${c.productPrice }<span class="mx-2">|</span>수량:
 													${c.amount } <span class="mx-2">|</span>합계 : ${c.totalPrice }
-													<c:set var="cartTotlPrice"
-														value="${cartTotlPrice + c.totalPrice }" />
+													<c:set var="cartTotalPrice"
+														value="${cartTotalPrice + c.totalPrice }" />
 												</div>
 											</div>
 										</div>
@@ -211,7 +211,7 @@
 					<div class="d-flex gr-total">
 						<h5>Grand Total</h5>
 						<div class="ml-auto h5">
-							<c:out value="${cartTotlPrice}" />
+							<c:out value="${cartTotalPrice}" />
 						</div>
 					</div>
 					<hr class="my-1">

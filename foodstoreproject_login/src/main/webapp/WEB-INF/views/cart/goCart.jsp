@@ -45,23 +45,27 @@
                             </thead> -->
 							<tbody>
 								<c:forEach var="c" items="${cartList }" varStatus="status">
-									<input type="hidden" id="cartId" value="${c.cartId }" />
 									<tr>
+										<td>${c.cartId }</td>
 										<td class="thumbnail-img"><a href="#"> <img
 												class="img-fluid" src="${c.productFilePath }" alt="" />
 										</a></td>
 										<td class="name-pr"><a href="#">${c.productName } </a></td>
-										<td class="price-pr">
-											<p>${c.productPrice }</p>
+										<td class="price-pr"><input type="hidden"
+											name="productPrice" id="productPrice"
+											value="${c.productPrice }" />
+											<p>${c.productPrice }</p></td>
+										<td class="quantity-box"><input type="number"
+											name="amount" id="cartAmount" size="4" value="${c.amount }"
+											min="0" step="1" class="c-input-text qty text"></td>
+										<td class="total-pr">합계 : ￦ <fmt:formatNumber
+												pattern="###,###,###" value="${c.totalPrice }" /> <c:set
+												var="cartTotalPrice"
+												value="${cartTotalPrice + c.totalPrice }" />
 										</td>
-										<td class="quantity-box"><input type="number" id="amount"
-											size="4" value="${c.amount }" min="0" step="1"
-											class="c-input-text qty text"></td>
-										<td class="total-pr" id="totalPrice">합계 : ￦ <fmt:formatNumber
-												pattern="###,###,###" value="${product.price }" />
-										</td>
-										<td class="remove-pr"><a href="#"> <i
-												class="fas fa-times" id="remove"></i>
+										<td class="remove-pr"><a href="#" class=remove
+											data-no="${c.cartId }"><i class="fas fa-times"
+												id="remove"> <input type="hidden" id="cartId" value="" /></i>
 										</a></td>
 									</tr>
 								</c:forEach>
@@ -100,7 +104,9 @@
 						<hr>
 						<div class="d-flex gr-total">
 							<h5>결제예상금액</h5>
-							<div class="ml-auto h5">$ 388</div>
+							<div class="ml-auto h5">
+								<c:out value="${cartTotalPrice}" />
+							</div>
 						</div>
 						<hr>
 					</div>

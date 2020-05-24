@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script type="text/javascript" src="resources/js/order.js"></script>
 <script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
 <body>
 	<!-- Start Shop Detail  -->
@@ -28,7 +27,7 @@
 							aria-hidden="true"></i>
 
 						</a>
-						<ol class="carousel-indicators">
+						<!-- <ol class="carousel-indicators">
 							<li data-target="#carousel-example-1" data-slide-to="0"
 								class="active"><img class="d-block w-100 img-fluid"
 								src="images/smp-img-01.jpg" alt="" /></li>
@@ -38,7 +37,7 @@
 							<li data-target="#carousel-example-1" data-slide-to="2"><img
 								class="d-block w-100 img-fluid" src="images/smp-img-03.jpg"
 								alt="" /></li>
-						</ol>
+						</ol> -->
 					</div>
 				</div>
 				<div class="col-xl-7 col-lg-7 col-md-6">
@@ -157,5 +156,4 @@
 		</div>
 	</div>
 	<!-- End Cart -->
-	<script type="text/javascript" src="resources/js/order.js"></script>
 </body>
