@@ -28,6 +28,11 @@ public class ProductServiceImpl implements ProductService {
 	public Product getProduct(String code, int no) {
 		return productDao.getProduct(code, no);
 	}
+	
+	@Override
+	public Product getProduct(int no) {
+		return productDao.getProduct(no);
+	}
 
 	@Override
 	public List<ProductReply> getReplyList(String code, int productNo) {

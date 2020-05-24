@@ -1,50 +1,70 @@
-function requestPay(){
-	//document.cookie = 'same-site-cookie=foo; SameSite=Lax';
-	//document.cookie = 'cross-site-cookie=bar; SameSite=None; Secure';
-	var IMP = window.IMP;
-	IMP.init('iamport')
-	IMP.request_pay({
-		pg: "kakaopay",
-	    pay_method: "card",
-	    merchant_uid: "ORD20180131-0000011",
-	    name: "노르웨이 회전 의자",
-	    amount: 64900,
-	    buyer_email: "gildong@gmail.com",
-	    buyer_name: "홍길동",
-	    buyer_tel: "010-4242-4242",
-	    buyer_addr: "서울특별시 강남구 신사동",
-	    buyer_postcode: "01181"
-	}, function(rsp){
-		if(rsp.success){
-			// 결제 성공시
-			jQuery.ajax({
-				url:"payments/complete",
-				type:'POST',
-				dataType:'json',
-				data:{
-					imp_uid : rsp.imp_uid
-				}
-			}).done(function(data){
-				if(everythings_fine){
-					msg = '결제가 완료되었습니다.';
-					msg += '\n고유ID:' + rsp.imp_uid;
-					msg += '\n상점 거래ID:' + rsp.merchant_uid;
-					msg += '\n결제 금액:' + rsp.paid_amount;
-					msg += '카드 승인번호:' + rsp.apply_num;
-					
-					alert(msg);
-				} else{
-					
-				}
-			});
-			location.href="/order/paySuccess?msg=" + msg;
-		} else{
-			// 결제 실패시
-			msg = "결제에 실패하였습니다.";
-			msg += "에러내용:" + rsp.error_msg;
-			//실패시 이동할 페이지
-			location.href="/order/payFail";
-			alert(msg);
-		}
+$(function(){
+	$("#amount").change(function(){
+		var amount = $("#amount").val();
+		var price = $("#productPrice").val();
+		var total = amount * price;
+		$("#total > .totalPrice").text("합계 : ￦"  + comma(total));
+		// $("#total").text("<h2>" + "<fmt:formatNumber pattern='###,###,###'
+		// value=" + total + "/>")
+	})
+	
+	$("#addCart").click(function(){
+		$.ajax({
+			url:"cartAdd.ajax",
+			type:"post",
+			data : {userId : $("#userId").val(), productNo : $("#productNo").val(), amount : $("#amount").val()},
+			dataType:"json",
+			success: function(data){
+				alert("장바구니에 추가되었습니다.");
+			},
+			error: function(xhr, status, error){
+				alert("error : " + xhr.statusText + ", " + status + ", " + error);
+			}
+		});
+		return false;
 	});
-}
+	
+	$("#remove").click(function(){
+		$.ajax({
+			url:"deleteCart.ajax",
+			type:"post",
+			data : {userId : $("#userId").val(), cartId : $("#cartId").val()},
+			dataType:"json",
+			success:function(resultData, status, xhr){
+				$("#cartTable").empty();
+				$.each(resultData, function(index, value){
+					var result = "<tbody><tr>" 
+						+ "<td class='thumbnail-img'>"
+						+ "<a href='#'>"
+						+ "<img class='img-fluid' src='" + value.productFilePath +  "alt='' />"
+						+ "</a></td>"
+						+ "<td class='name-pr'><a href='#'>"
+						+ value.productName + "</a></td>"
+						+ "<td class='price-pr'><p>"
+						+ value.productPrice + "</p></td>"
+						+ "<td class='quantity-box'><input type='number' id='amount' size='4' value='"
+						+ value.amount 
+						+ "min='0' step='1' class='c-input-text qty text'></td>"
+						+ "<td class='total-pr' id='totalPrice'>"
+						+ "합계 : ￦ <fmt:formatNumber pattern='###,###,###' value='" 
+						+ "value.price'/></td>"
+						+ "<td class='remove-pr'><a href='#'><i class='fas fa-times' id='remove'></i>"
+						+ "</a></td></tr></tbody>";
+					$("#cartTable").append(result);
+				});
+			},
+			error: function(xhr, status, error){
+				alert("error : " + xhr.statusText + ", " + status + ", " + error);
+			}
+		});
+		return false;
+	});
+	
+	function comma(str) {
+        str = String(str);
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    }
+	
+	
+})
+

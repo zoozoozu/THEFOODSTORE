@@ -21,6 +21,13 @@
 		WHERE gno = #{product.no} AND gcode = #{product.code};
 	</select>
 	
+	<select id="getProductNo" resultType="Product" resultMap="ProductResultMap">
+		SELECT
+			*
+		FROM progoods
+		WHERE gno = #{product.no};
+	</select>
+	
 	<select id="getReplyList" resultType="ProductReply" resultMap="ReplyResultMap">
 		SELECT 
 			* 

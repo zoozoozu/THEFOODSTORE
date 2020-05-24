@@ -62,4 +62,7 @@
 	<view-controller path="/joinForm" view-name="member/memberJoinForm"/>
 	<view-controller path="loginForm" view-name="member/loginForm" />
 	
+	<!-- test용 view-controller -->
+	<view-controller path="cart" view-name="cart/cart"/>
+	
 </beans:beans>

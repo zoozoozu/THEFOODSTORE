@@ -2,6 +2,7 @@ package com.foodstore.bbs.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.foodstore.bbs.domain.Cart;
 import com.foodstore.bbs.domain.Member;
 import com.foodstore.bbs.exception.MemberNotFoundException;
 import com.foodstore.bbs.exception.MemberPassCheckFailException;
+import com.foodstore.bbs.service.CartService;
 import com.foodstore.bbs.service.MemberService;
 
 // 스프링 MVC의 컨트롤러임을 선언하고 있다.
@@ -29,10 +32,16 @@ import com.foodstore.bbs.service.MemberService;
 public class MemberController {
 
 	private MemberService memberService;
+	private CartService cartService;
 
 	@Autowired
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
+	}
+	
+	@Autowired
+	public void setCartService(CartService cartService) {
+		this.cartService = cartService;
 	}
 
 	// 로그인 컨트롤
@@ -65,11 +74,19 @@ public class MemberController {
 
 		Member member = memberService.getMember(id);
 		session.setAttribute("isLogin", true);
+		session.setAttribute("id", id);
 
 		// 모델에 저장
 		model.addAttribute("member", member);
 		System.out.println("member.name : " + member.getName());
 
+		List<Cart> cartList = cartService.cartList(id);
+		//로그인 할때 그 로그인하는 사람의 카트도 가져온다.
+		if(cartList != null) {
+			member.setCartList(cartList);
+			session.setAttribute("cartList", cartList);	
+		}
+		
 		// 뷰 리다이랙트 호출
 		return "redirect:/main";
 	}

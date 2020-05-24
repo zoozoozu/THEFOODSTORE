@@ -18,8 +18,8 @@
 									class="fa fa-user s_color"></i>${sessionScope.isLogin ? " Log-Out " : " Log-In " }</a></li>
 							<li><a href="#"><i class="fas fa-location-arrow"></i>
 									Our location</a></li>
-							<li><a href="#"><i class="fas fa-headset"></i> Contact
-									Us</a></li>
+							<li><a href='${pageContext.servletContext.contextPath }/
+									${sessionScope.isLogin ? "goCart" : "loginForm"}'><i class="fas fa-headset"></i>장바구니</a></li>
 						</ul>
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 					</button>
 					<a class="navbar-brand"
 						href="${ pageContext.servletContext.contextPath }/"><img
-						src="resources/images/brand.png" class="logo" alt="" height="70px"></a>
+						src="resources/images/thefood.png" class="logo" alt="" height="70px"></a>
 				</div>
 				<!-- End Header Navigation -->
 
@@ -87,17 +87,21 @@
 			<!-- Start Side Menu -->
 			<div class="side">
 				<a href="#" class="close-side"><i class="fa fa-times"></i></a>
+				<c:forEach var="c" items="${sessionScope.member.cartList }" varStatus = "status">
 				<li class="cart-box">
 					<ul class="cart-list">
 						<li><a href="#" class="photo"><img
-								src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
+								src="${c.productFilePath }" class="cart-thumb" alt="" /></a>
 							<h6>
-								<a href="#">Delica omtantur </a>
+								<a href="#">${c.productName }</a>
 							</h6>
 							<p>
-								1x - <span class="price">$80.00</span>
+								${c.amount } - <span class="price">${c.totalPrice }</span>
 							</p></li>
-						<li><a href="#" class="photo"><img
+					</ul>
+				</li>
+				</c:forEach>
+						<!-- <li><a href="#" class="photo"><img
 								src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
 							<h6>
 								<a href="#">Omnes ocurreret</a>
@@ -117,7 +121,7 @@
 							class="btn btn-default hvr-hover btn-cart">VIEW CART</a> <span
 							class="float-right"><strong>Total</strong>: $180.00</span></li>
 					</ul>
-				</li>
+				</li> -->
 			</div>
 			<!-- End Side Menu -->
 		</nav>

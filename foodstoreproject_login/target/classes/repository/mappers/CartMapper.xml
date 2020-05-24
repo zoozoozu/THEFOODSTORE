@@ -5,14 +5,38 @@
 	
 	<!-- 일단은 해당 아이디의 전체 카트리스트 받아오기 -->
 	<select id="getCartList" resultType="Cart">
-		SELECT no as cartId, user_id as userId, product_id as productId, amount
-		FROM cart
-		WHERE user_id = #{userId}
+		SELECT no as cartId, user_id as userId, product_id as productId, price as productPrice, file_path as productFilePath, gname as productName, amount, price*amount as totalPrice
+		FROM member m, progoods p, cart c
+		WHERE m.id = c.user_id and p.gno = c.product_id;
+	</select>
+	
+	<select id="getCartCount" parameterType="Cart">
+		SELECT COUNT(no)
+		FROM member m, cart c
+		WHERE m.id = c.user_id
 	</select>
 	
 	<insert id="addCart" parameterType="Cart">
 		INSERT INTO cart(user_id, product_id, amount)
 		VALUES(#{userId}, #{productId}, #{amount})
 	</insert>
+	
+	<!-- 수정중 -->
+	<update id="updateCart" parameterType="Cart">
+		UPDATE cart
+		SET amount = #{amount}
+		WHERE cart_id = #{cartId}
+	</update>
+	
+	<delete id="deleteOne">
+		DELETE FROM cart
+		WHERE no = #{cartId}
+	</delete>
+	
+	<select id="sumMoney" resultType="int">
+		SELECT sum(price*amount)
+		FROM member m, progoods p, cart c
+		WHERE m.id = c.user_id and p.gno = c.product_id; 
+	</select>
 	
 </mapper>

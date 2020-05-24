@@ -1,16 +1,26 @@
 package com.foodstore.bbs.domain;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Member {	
 	
 	private String name, id, pass, email, mobile;
 	private String phone, zipcode, address1, address2;
 	private boolean  emailGet;
-	private Timestamp regDate;		
+	private Timestamp regDate;
+	private List<Cart> cartList;
 	
 	public Member() { }	
 	
+	public List<Cart> getCartList() {
+		return cartList;
+	}
+
+	public void setCartList(List<Cart> cartList) {
+		this.cartList = cartList;
+	}
+
 	public String getName() {
 		return name;
 	}
