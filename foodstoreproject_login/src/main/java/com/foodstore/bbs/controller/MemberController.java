@@ -79,6 +79,7 @@ public class MemberController {
 		// 모델에 저장
 		model.addAttribute("member", member);
 		System.out.println("member.name : " + member.getName());
+		System.out.println("member.id : " + member.getId());
 
 		List<Cart> cartList = cartService.cartList(id);
 		//로그인 할때 그 로그인하는 사람의 카트도 가져온다.
@@ -142,7 +143,7 @@ public class MemberController {
 		System.out.println("joinResult : " + member.getName());
 		memberService.addMember(member);
 		sessionStatus.setComplete();
-		return "redirect:boardList";
+		return "redirect:index";
 	}
 	
 	@RequestMapping("/memberUpdateForm")
@@ -184,7 +185,7 @@ public class MemberController {
 			@ModelAttribute("m") Member member) {
 		System.out.println("updateResult : " + member.getName());
 		memberService.updateMember(member);
-		return "redirect:boardList";
+		return "redirect:index";
 	}
 
 	// 아이디가 다를 경우 예외 처리하는 메서드

@@ -14,7 +14,7 @@
 				<div class="col-lg-12">
 					<h2>Cart</h2>
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="#">Shop</a></li>
+						<li class="breadcrumb-item"><a href="main">Shop</a></li>
 						<li class="breadcrumb-item active">Cart</li>
 					</ul>
 				</div>
@@ -50,7 +50,7 @@
 										<td class="thumbnail-img"><a href="#"> <img
 												class="img-fluid" src="${c.productFilePath }" alt="" />
 										</a></td>
-										<td class="name-pr"><a href="#">${c.productName } </a></td>
+										<td class="name-pr"><a href="productDetail?code=${c.productCode}&no=${c.productId}">${c.productName } </a></td>
 										<td class="price-pr"><input type="hidden"
 											name="productPrice" id="productPrice"
 											value="${c.productPrice }" />

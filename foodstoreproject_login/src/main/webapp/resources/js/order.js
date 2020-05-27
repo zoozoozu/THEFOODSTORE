@@ -26,21 +26,22 @@ $(function() {
 					url : "cartAdd.ajax",
 					type : "post",
 					data : {
-						userId : $("#userId").val(),
-						productNo : $("#productNo").val(),
-						amount : $("#amount").val()
+						userId : $("#userId").val(), productNo : $("#productNo").val(), amount : $("#amount").val()
 					},
 					dataType : "json",
-					success : function(data) {
-						alert("장바구니에 추가되었습니다.");
+					success : function(data, status, xhr) {
+						if(data.redirect){
+							window.location.href = data.redirect;
+						}else{
+							alert("장바구니에 추가되었습니다.");
+						}
 					},
 					error : function(xhr, status, error) {
 						alert("error : " + xhr.statusText + ", " + status
 								+ ", " + error);
 					}
 				});
-				return false;
-			});
+			})
 
 	$(document)
 			.on(
@@ -65,6 +66,7 @@ $(function() {
 												.each(
 														resultData,
 														function(index, value) {
+															console.log(value.productFilePath);
 															var result = "<tbody><tr>"
 																	+ "<td class='thumbnail-img'>"
 																	+ "<a href='#'>"

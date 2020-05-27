@@ -59,7 +59,7 @@
 	<redirect-view-controller redirect-url="/default" path="product/main"/>
 	<redirect-view-controller redirect-url="/write" path="board/writeForm" />
 	
-	<view-controller path="foodstoreproject/joinForm" view-name="member/memberJoinForm"/>
+	<view-controller path="joinForm" view-name="member/memberJoinForm"/>
 	<view-controller path="loginForm" view-name="member/loginForm" />
 	
 	<!-- test용 view-controller -->

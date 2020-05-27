@@ -56,7 +56,7 @@
 								<li>
 									<div class="form-group quantity-box">
 										<label class="control-label">수량</label> <input
-											name="amount" id="amount"class="form-control" value="1" min="1" max="20"
+											name="amount" id="amount" class="form-control" value="1" min="1" max="20"
 											type="number">
 									</div>
 								</li>

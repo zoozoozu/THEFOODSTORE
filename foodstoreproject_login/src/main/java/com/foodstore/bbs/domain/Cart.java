@@ -4,6 +4,8 @@ public class Cart {
 	private int cartId;
 	private String userId;
 	private int productId;
+	private String productCode;
+
 	private String productName;
 	private String productFilePath;
 	private int productPrice;
@@ -63,5 +65,13 @@ public class Cart {
 	}
 	public void setProductFilePath(String productFilePath) {
 		this.productFilePath = productFilePath;
+	}
+	
+	public String getProductCode() {
+		return productCode;
+	}
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
 	}
 }
