@@ -102,7 +102,7 @@
 															<div class="mask-icon">
 																<ul>
 																	<li><a
-																		href="productDetail?code=${p.code}&no=${p.no}"
+																		href="productDetail?code=${c.code}&no=${c.productId}"
 																		data-toggle="tooltip" data-placement="right"
 																		title="View"><i class="fas fa-eye"></i></a></li>
 																	<li><a href="#" data-toggle="tooltip"

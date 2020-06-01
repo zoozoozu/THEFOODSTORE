@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link type="text/css" href="resources/css/product.css" rel="stylesheet" />
-<script type="text/javascript" src="resources/js/order.js"></script>
 <script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
 <body>
 	<!-- Start Shop Detail  -->
@@ -29,7 +27,7 @@
 							aria-hidden="true"></i>
 
 						</a>
-						<ol class="carousel-indicators">
+						<!-- <ol class="carousel-indicators">
 							<li data-target="#carousel-example-1" data-slide-to="0"
 								class="active"><img class="d-block w-100 img-fluid"
 								src="images/smp-img-01.jpg" alt="" /></li>
@@ -39,7 +37,7 @@
 							<li data-target="#carousel-example-1" data-slide-to="2"><img
 								class="d-block w-100 img-fluid" src="images/smp-img-03.jpg"
 								alt="" /></li>
-						</ol>
+						</ol> -->
 					</div>
 				</div>
 				<div class="col-xl-7 col-lg-7 col-md-6">
@@ -58,7 +56,7 @@
 								<li>
 									<div class="form-group quantity-box">
 										<label class="control-label">수량</label> <input
-											name="amount" id="amount"class="form-control" value="1" min="1" max="20"
+											name="amount" id="amount" class="form-control" value="1" min="1" max="20"
 											type="number">
 									</div>
 								</li>
@@ -72,9 +70,9 @@
 							</h2>
 							</div>
 							
-							<input type="hidden" name="userId"
+							<input type="hidden" name="userId" id="userId"
 								value="${ sessionScope.member.id }" /> 
-							<input type="hidden"
+							<input type="hidden" id="productNo"
 								name="productNo" value="${product.no }" />
 							<input type="hidden"
 								name="productPrice" id="productPrice" value="${product.price }"/>
@@ -82,12 +80,12 @@
 							<div class="price-box-bar">
 								<div class="cart-and-bay-btn">
 									<button class="btn hvr-hover" onclick="action='goOrder'"
-										style="color: white">Buy New</button>
+										style="color: white">즉시결제</button>
 									<!-- <a class="btn hvr-hover" data-fancybox-close="" 
 								 onclick="action='goOrder'">
 									Buy New</a>  -->
-									<a class="btn hvr-hover" data-fancybox-close="" href="#">Add
-										to cart</a>
+									<button class="btn hvr-hover" id="addCart" onclick="action='addCart'" 
+										style="color: white">장바구니 추가</button>
 								</div>
 							</div>
 						</form>
@@ -158,5 +156,4 @@
 		</div>
 	</div>
 	<!-- End Cart -->
-	<script type="text/javascript" src="resources/js/order.js"></script>
 </body>

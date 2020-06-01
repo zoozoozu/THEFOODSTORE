@@ -2,7 +2,6 @@
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script type="text/javascript" src="resources/js/order.js"></script>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -193,8 +192,8 @@
 												<div class="small text-muted">
 													가격: ${c.productPrice }<span class="mx-2">|</span>수량:
 													${c.amount } <span class="mx-2">|</span>합계 : ${c.totalPrice }
-													<c:set var="cartTotlPrice"
-														value="${cartTotlPrice + c.totalPrice }" />
+													<c:set var="cartTotalPrice"
+														value="${cartTotalPrice + c.totalPrice }" />
 												</div>
 											</div>
 										</div>
@@ -212,7 +211,7 @@
 					<div class="d-flex gr-total">
 						<h5>Grand Total</h5>
 						<div class="ml-auto h5">
-							<c:out value="${cartTotlPrice}" />
+							<c:out value="${cartTotalPrice}" />
 						</div>
 					</div>
 					<hr class="my-1">
@@ -221,14 +220,12 @@
 								<h4>Shipping Cost</h4>
 								<div class="ml-auto font-weight-bold">Free</div>
 							</div> -->
-					<hr>
-					<hr>
 				</div>
 			</div>
 
 
 			<div class="col-10 d-flex shopping-box">
-				<a href="test" class="ml-auto btn hvr-hover">Place Order</a>
+				<a href="test" class="ml-auto btn hvr-hover">구매하기</a>
 			</div>
 		</div>
 

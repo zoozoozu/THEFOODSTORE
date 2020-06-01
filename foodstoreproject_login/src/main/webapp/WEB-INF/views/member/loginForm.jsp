@@ -8,4 +8,5 @@
 		<div>비밀번호 : <input type="password" name="pass" /></div>
 		<div class="btnSubmit"><input type="submit" value="로그인" /></div>
 	</form>
+	<a href="joinForm">회원가입</a>
 </article>

@@ -32,8 +32,7 @@ public class CartDaoImpl implements CartDao {
 
 	@Override
 	public void delete(int cartId) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.delete(NAME_SPACE + ".deleteOne", cartId);
 	}
 
 	@Override

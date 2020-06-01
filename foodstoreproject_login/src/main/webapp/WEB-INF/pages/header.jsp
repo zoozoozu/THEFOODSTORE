@@ -19,7 +19,7 @@
 							<li><a href="#"><i class="fas fa-location-arrow"></i>
 									Our location</a></li>
 							<li><a href='${pageContext.servletContext.contextPath }/
-									${sessionScope.isLogin ? "cart" : "loginForm"}'><i class="fas fa-headset"></i>장바구니</a></li>
+									${sessionScope.isLogin ? "goCart" : "loginForm"}'><i class="fas fa-headset"></i>장바구니</a></li>
 						</ul>
 					</div>
 				</div>
