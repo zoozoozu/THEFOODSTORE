@@ -50,4 +50,9 @@ public class CartServiceImpl implements CartService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public void updateAmount(int productId) {
+		cartDao.updateAmount(productId);
+	}
 }

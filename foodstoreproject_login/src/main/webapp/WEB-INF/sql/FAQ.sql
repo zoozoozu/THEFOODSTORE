@@ -1,4 +1,4 @@
-use spring;
+use store;
 
 CREATE TABLE IF NOT EXISTS faq(
   no INTEGER AUTO_INCREMENT PRIMARY KEY,

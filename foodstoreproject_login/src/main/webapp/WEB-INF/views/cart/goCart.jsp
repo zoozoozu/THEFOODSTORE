@@ -46,7 +46,7 @@
 							<tbody>
 								<c:forEach var="c" items="${cartList }" varStatus="status">
 									<tr>
-										<td>${c.cartId }</td>
+										<td id="cartId">${c.cartId }</td>
 										<td class="thumbnail-img"><a href="#"> <img
 												class="img-fluid" src="${c.productFilePath }" alt="" />
 										</a></td>
@@ -55,9 +55,10 @@
 											name="productPrice" id="productPrice"
 											value="${c.productPrice }" />
 											<p>${c.productPrice }</p></td>
-										<td class="quantity-box"><input type="number"
-											name="amount" id="cartAmount" size="4" value="${c.amount }"
-											min="0" step="1" class="c-input-text qty text"></td>
+										<td class="quantity-box"><input type="number" class="dynamic_amount"
+											name="amount" id="amount_${c.cartId }" size="4" value="${c.amount }"
+											min="0" step="1" class="c-input-text qty text">
+											<input type="hidden" id="cartId" value="${c.cartId }" /></td>
 										<td class="total-pr">합계 : ￦ <fmt:formatNumber
 												pattern="###,###,###" value="${c.totalPrice }" /> <c:set
 												var="cartTotalPrice"

@@ -21,11 +21,17 @@
 		VALUES(#{userId}, #{productId}, #{amount})
 	</insert>
 	
-	<!-- 수정중 -->
-	<update id="updateCart" parameterType="Cart">
+	<!-- 장바구니 갯수변경 -->
+	<update id="updateAmount">
+		UPDATE cart
+		SET amount = amount + 1
+		WHERE product_id = #{productId}
+	</update>
+	
+	<update id="updateCart">
 		UPDATE cart
 		SET amount = #{amount}
-		WHERE cart_id = #{cartId}
+		WHERE product_id = #{productId}
 	</update>
 	
 	<delete id="deleteOne">

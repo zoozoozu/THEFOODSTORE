@@ -51,5 +51,12 @@ public class CartDaoImpl implements CartDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public void updateAmount(int productId) {
+		sqlSession.update(NAME_SPACE + ".updateAmount", productId);
+	}
+	
+	
 	
 }

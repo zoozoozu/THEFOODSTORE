@@ -1,11 +1,6 @@
 ## DATABASE 생성 및 선택
-
-CREATE DATABASE IF NOT EXISTS spring;
-use spring;
-
-## DATABASE 생성 및 선택
-CREATE DATABASE IF NOT EXISTS spring;
-use spring;
+CREATE DATABASE IF NOT EXISTS store;
+use store;
 
 -- 기존의 springbbs 테이블을 삭제하고 추천, 땡큐를 저장할 컬럼을 추가해 다시 생성한다.
 -- 게시글 번호, 제목, 이메일, 내용, 글쓴이, 날짜, 조회수, 비밀번호, 파일정보, 추천, 땡큐
@@ -89,7 +84,7 @@ SELECT * FROM reply;
 
 
 
-use spring;
+use store;
 Drop table IF EXISTS files;
 create table IF NOT EXISTS files(
 	no int auto_increment primary key,

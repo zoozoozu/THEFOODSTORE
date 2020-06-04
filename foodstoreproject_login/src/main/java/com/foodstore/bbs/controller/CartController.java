@@ -21,7 +21,7 @@ import com.foodstore.bbs.service.CartService;
 import com.foodstore.bbs.service.ProductService;
 
 @Controller
-@SessionAttributes({ "cart" })
+@SessionAttributes({ "cart" , "cartList"})
 public class CartController {
 
 	private CartService cartService;
@@ -106,7 +106,7 @@ public class CartController {
 	public String cartList(Model model, HttpSession session) {
 		String userId = (String) session.getAttribute("id");
 		List<Cart> cartList = cartService.cartList(userId);
-		session.setAttribute("cartList", cartList);
+		//session.setAttribute("cartList", cartList);
 		model.addAttribute("cartList", cartList);
 		return "cart/goCart";
 	}

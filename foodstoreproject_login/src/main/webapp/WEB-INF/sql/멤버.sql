@@ -1,6 +1,6 @@
 ## DATABASE 생성 및 선택
-CREATE DATABASE IF NOT EXISTS spring;
-use spring;
+CREATE DATABASE IF NOT EXISTS store;
+use store;
 
 # 테이블 생성
 DROP TABLE IF EXISTS member;

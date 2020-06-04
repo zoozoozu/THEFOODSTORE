@@ -1,4 +1,4 @@
-use spring;
+use store;
 
 DROP TABLE procode;
 CREATE TABLE procode(
@@ -102,7 +102,7 @@ commit;
 select * from product_reply;
 select * from product_reply where gcode = 'c1000' and gno=1;
 
-use spring;
+use store;
 DROP TABLE cart;
 CREATE TABLE cart(
     no INTEGER AUTO_INCREMENT PRIMARY KEY,
