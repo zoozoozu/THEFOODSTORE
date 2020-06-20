@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,22 +71,22 @@ public class CartController {
 			int totalPrice = product.getPrice() * amount;
 			Cart cart = new Cart();
 			cart.setUserId(userId);
-			cart.setProductId(productNo);
+			cart.setProductId(product.getNo());
 			cart.setAmount(amount);
-			/*
-			 * cart.setProductPrice(product.getPrice()); cart.setTotalPrice(totalPrice);
-			 */
-			cartService.addCart(cart);
-
+			cart.setProductFilePath(product.getFilePath());
+			cart.setProductName(product.getName());
+			cart.setProductPrice(product.getPrice());
+			cart.setTotalPrice(totalPrice);
+	
 			List<Cart> cartList = cartService.cartList(userId);
 
 			// DB에 저장할 필요가 없으므로
 			// cartService.addCart(cart);
-			session.setAttribute("cartList", cartList);
+			//session.setAttribute("cartList", cartList);
 
 			model.addAttribute("userId", userId);
 			model.addAttribute("product", product);
-			model.addAttribute("cartList", cartList);
+			model.addAttribute("cart", cart);
 			return "cart/goOrder";
 
 		} else {
@@ -103,9 +104,10 @@ public class CartController {
 	}
 
 	@RequestMapping(value = { "goCart", "addCart" })
-	public String cartList(Model model, HttpSession session) {
+	public String cartList(Model model, HttpSession session,
+						@ModelAttribute("cartList")List<Cart> cartList) {
 		String userId = (String) session.getAttribute("id");
-		List<Cart> cartList = cartService.cartList(userId);
+		cartList = cartService.cartList(userId);
 		//session.setAttribute("cartList", cartList);
 		model.addAttribute("cartList", cartList);
 		return "cart/goCart";

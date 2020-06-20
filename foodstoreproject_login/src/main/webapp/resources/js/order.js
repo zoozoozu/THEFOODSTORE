@@ -78,15 +78,11 @@ $(function() {
 								.ajax({
 									url : "deleteCart.ajax",
 									type : "post",
-									data : params,// {userId :
-													// $("#userId").val(),
-													// cartId :
-													// $("#cartId").val()},
+									data : params,
 									dataType : "json",
 									success : function(resultData, status, xhr) {
 										$("#cartTable").empty();
-										$
-												.each(
+										$.each(
 														resultData,
 														function(index, value) {
 															console.log(value.productFilePath);
@@ -115,6 +111,7 @@ $(function() {
 																	.append(
 																			result);
 														});
+										location.reload();
 									},
 									error : function(xhr, status, error) {
 										alert("error : " + xhr.statusText
@@ -127,5 +124,5 @@ $(function() {
 		str = String(str);
 		return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 	}
-
+	
 })

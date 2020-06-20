@@ -24,25 +24,34 @@ public class CartAjaxController {
 	// 장바구니에 추가 부분 ajax
 	@RequestMapping("/cartAdd.ajax")
 	@ResponseBody
-	public List<Cart> cartAdd(Model model, String userId, int productNo, int amount) {
+	public List<Cart> cartAdd(Model model, HttpSession session, String userId, int productNo, int amount) {
+		/*
+		 * Cart cart = new Cart(); cart.setUserId(userId); cart.setProductId(productNo);
+		 * cart.setAmount(amount); cartService.addCart(cart);
+		 */
+		boolean isCart = true;
 		List<Cart> tmpCart = cartService.cartList(userId);
 		Cart cart = new Cart();
-		for(int i = 0; i < tmpCart.size(); i++) {
-			// 같은 상품이 있다면
-			if(productNo == tmpCart.get(i).getProductId()) {
+		
+		for (int i = 0; i < tmpCart.size(); i++) {
+			if (productNo == tmpCart.get(i).getProductId()) {
 				cartService.updateAmount(tmpCart.get(i).getProductId());
-			}else {
-				// 같은 상품이 없다면
-				cart.setUserId(userId);
-				cart.setProductId(productNo);
-				cart.setAmount(amount);
-				cartService.addCart(cart);
-			}		
+				isCart = false;
+			} 
 		}
+			// 같은 상품이 없다면
+		if(isCart) {
+		cart.setUserId(userId);
+		cart.setProductId(productNo);
+		cart.setAmount(amount);
+		cartService.addCart(cart);
+		}
+		
+		session.setAttribute("cartList", cartService.cartList(userId));
 		model.addAttribute("cartList", cartService.cartList(userId));
 		return cartService.cartList(userId);
 	}
-	
+
 	@RequestMapping("/deleteCart.ajax")
 	@ResponseBody
 	public List<Cart> deleteCart(HttpSession session, String userId, int cartId) {
@@ -50,7 +59,7 @@ public class CartAjaxController {
 		session.setAttribute("cartList", cartService.cartList(userId));
 		return cartService.cartList(userId);
 	}
-	
+
 	/*
 	 * @RequestMapping("/updateCart.ajax")
 	 * 

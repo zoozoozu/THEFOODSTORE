@@ -18,6 +18,7 @@ public class Cart {
 	 * public Cart(int cartId, String userId, int productId, int productPrice, int
 	 * amount) { this.cartId = cartId; this.userId = userId; this.amount = amount; }
 	 */
+
 	public int getCartId() {
 		return cartId;
 	}

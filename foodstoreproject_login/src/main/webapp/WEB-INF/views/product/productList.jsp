@@ -75,7 +75,15 @@
 																	data-placement="right" title="Add to Wishlist"><i
 																		class="far fa-heart"></i></a></li>
 															</ul>
-															<a class="cart" href="#">Add to Cart</a>
+															<input type="hidden" name="userId" id="userId"
+																value="${ sessionScope.member.id }" /> <input
+																type="hidden" id="productNo" name="productNo"
+																value="${p.no }" /> <input type="hidden"
+																name="productPrice" id="productPrice"
+																value="${p.price }" /> <input type="hidden" id="amount"
+																value="1"><a class="cart"
+																href="javascript:void(0);" id="addCart"
+																onclick="addCart">장바구니</a>
 														</div>
 													</div>
 													<div class="why-text">
@@ -118,7 +126,8 @@
 														<h4>${p.name }</h4>
 														<h5>>₩ ${p.price}</h5>
 														<p>${p.intro }</p>
-														<a class="btn hvr-hover" href="#">Add to Cart</a>
+														<a class="btn hvr-hover" id="addCart"
+															onclick="action='addCart'">장바구니 추가</a>
 													</div>
 												</div>
 											</div>

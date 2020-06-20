@@ -176,31 +176,59 @@
 						<div class="title-left">
 							<h3>Shopping cart</h3>
 						</div>
-						<c:forEach var="c" items="${cartList }" varStatus="status">
+						<c:if test="${cart != null }">
 							<div class="rounded p-2 bg-light">
 								<div class="media mb-2 border-bottom">
 									<div class="media-body">
 										<div class="row">
 											<div class="col-md-2 mb-3">
 												<a href="#"><img class="d-block"
-													src="${c.productFilePath }" width=80, height=80></a>
+													src="${cart.productFilePath }" width=80, height=80></a>
 											</div>
 											<div class="col-md-4 mb-3">
-												<div class="ml-auto font-weight-bold">${c.productName }</div>
+												<div class="ml-auto font-weight-bold">${cart.productName }</div>
 											</div>
 											<div class="col-md-4 mb-3">
 												<div class="small text-muted">
-													가격: ${c.productPrice }<span class="mx-2">|</span>수량:
-													${c.amount } <span class="mx-2">|</span>합계 : ${c.totalPrice }
+													가격: ${cart.productPrice }<span class="mx-2">|</span>수량:
+													${cart.amount } <span class="mx-2">|</span>합계 : ${cart.totalPrice }
 													<c:set var="cartTotalPrice"
-														value="${cartTotalPrice + c.totalPrice }" />
+														value="${cartTotalPrice + cart.totalPrice }" />
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</c:forEach>
+						</c:if>
+						<c:if test="${cart == null }">
+							<c:forEach var="c" items="${cartList}" varStatus="status">
+								<div class="rounded p-2 bg-light">
+									<div class="media mb-2 border-bottom">
+										<div class="media-body">
+											<div class="row">
+												<div class="col-md-2 mb-3">
+													<a href="#"><img class="d-block"
+														src="${c.productFilePath }" width=80, height=80></a>
+												</div>
+												<div class="col-md-4 mb-3">
+													<div class="ml-auto font-weight-bold">${c.productName }</div>
+												</div>
+												<div class="col-md-4 mb-3">
+													<div class="small text-muted">
+														가격: ${c.productPrice }<span class="mx-2">|</span>수량:
+														${c.amount } <span class="mx-2">|</span>합계 :
+														${c.totalPrice }
+														<c:set var="cartTotalPrice"
+															value="${cartTotalPrice + c.totalPrice }" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</c:if>
 					</div>
 				</div>
 				<hr class="mb-4">
