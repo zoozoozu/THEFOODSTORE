@@ -74,16 +74,15 @@
 																<li><a href="#" data-toggle="tooltip"
 																	data-placement="right" title="Add to Wishlist"><i
 																		class="far fa-heart"></i></a></li>
-															</ul>
+															</ul> 
 															<input type="hidden" name="userId" id="userId"
 																value="${ sessionScope.member.id }" /> <input
 																type="hidden" id="productNo" name="productNo"
 																value="${p.no }" /> <input type="hidden"
 																name="productPrice" id="productPrice"
 																value="${p.price }" /> <input type="hidden" id="amount"
-																value="1"><a class="cart"
-																href="javascript:void(0);" id="addCart"
-																onclick="addCart">장바구니</a>
+																value="1">
+																<a class="cart" href='javascript:void(0);'onclick="cartAdd('${p.no}', '${ sessionScope.member.id }', '1');">장바구니</a>
 														</div>
 													</div>
 													<div class="why-text">
