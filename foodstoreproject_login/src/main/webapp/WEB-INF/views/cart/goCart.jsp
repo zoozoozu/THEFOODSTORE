@@ -45,28 +45,27 @@
                             </thead> -->
 							<tbody>
 								<c:forEach var="c" items="${cartList }" varStatus="status">
-									<tr>
+								 <input type="hidden" id="cartNumber" value="${c.cartId }" />
+									<tr id="cartId_${c.cartId }">
 										<td id="cartId">${c.cartId }</td>
 										<td class="thumbnail-img"><a href="#"> <img
 												class="img-fluid" src="${c.productFilePath }" alt="" />
 										</a></td>
 										<td class="name-pr"><a href="productDetail?code=${c.productCode}&no=${c.productId}">${c.productName } </a></td>
 										<td class="price-pr"><input type="hidden"
-											name="productPrice" id="productPrice"
+											name="productPrice" id="productPrice_${c.cartId }"
 											value="${c.productPrice }" />
 											<p>${c.productPrice }</p></td>
 										<td class="quantity-box"><input type="number" class="dynamic_amount"
 											name="amount" id="amount_${c.cartId }" size="4" value="${c.amount }"
 											min="0" step="1" class="c-input-text qty text">
-											<input type="hidden" id="cartId" value="${c.cartId }" /></td>
-										<td class="total-pr">합계 : ￦ <fmt:formatNumber
-												pattern="###,###,###" value="${c.totalPrice }" /> <c:set
-												var="cartTotalPrice"
-												value="${cartTotalPrice + c.totalPrice }" />
+											<input type="hidden" id="cartId_input" value="${c.cartId }" /></td>
+										<td class="total-pr_${c.cartId }">합계 : ￦ <fmt:formatNumber
+												pattern="###,###,###" value="${c.totalPrice }" />
 										</td>
 										<td class="remove-pr"><a href="#" class=remove
 											data-no="${c.cartId }"><i class="fas fa-times"
-												id="remove"> <input type="hidden" id="cartId" value="" /></i>
+												id="remove"></i>
 										</a></td>
 									</tr>
 								</c:forEach>
